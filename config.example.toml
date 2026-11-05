@@ -1,0 +1,32 @@
+# Copy to config.toml (next to zenith.py) or ~/.config/zenith/config.toml.
+
+[location]                 # weather + aurora; omit lat/lon to use IP geolocation (fallback: San Francisco)
+label = "SAN FRANCISCO"
+lat = 37.77
+lon = -122.42
+units = "imperial"         # imperial | metric
+
+[display]
+fps = 30
+levels = 6                 # grey levels before ordered dithering (2 = pure 1-bit look)
+mode = "auto"              # auto (240p if the kernel offers it, else 480i) | 240p | 480i
+output = "grey"            # grey for a mono composite monitor (the phosphor makes it green); green for colour screens
+backend = "auto"           # auto (kms -> pygame -> fbdev) | kms | pygame | fbdev
+crt_sim = false            # simulated scanlines/glow: leave off on a real tube
+margin_x = 0               # shrink the picture inside an overscanning tube (output pixels)
+margin_y = 0
+
+[slides]
+min_seconds = 8
+max_seconds = 20
+transition_min = 1.0
+transition_max = 2.5
+exclude = []               # scene names from `python3 zenith.py --list`
+
+[radar]                    # live ADS-B scope (adsb.lol, no key)
+lat = 37.6213              # scope centre
+lon = -122.3790
+range_nm = 40
+label = "KSFO"             # tag in the scope corner (8 chars)
+marks = [["SFO", 37.6213, -122.3790], ["OAK", 37.7213, -122.2208], ["SJC", 37.3626, -121.9291]]
+live = true                # false = synthetic traffic only
